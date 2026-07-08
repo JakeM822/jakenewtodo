@@ -17,7 +17,7 @@ phases:
       - echo Pushing the Docker image to ECR...
       - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"jake-capstone-container","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"jake-react-app","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest"}]' > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
