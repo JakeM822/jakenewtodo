@@ -1,23 +1,24 @@
 version: 0.2
+
 phases:
-  install:
+  pre_build:
     commands:
-      - echo install step...
-  pre_build: 
-    commands:
-      - echo logging in to AWS ECR...
+      - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 962804699607.dkr.ecr.us-west-2.amazonaws.com
-  build:
+build:
     commands:
-      - echo build Docker image on 'date'
-      - docker build -t terraformasaurus-rex-repo .
-      - docker tag terraformasaurus-rex-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/terraformasaurus-rex-repo:latest 
-  post_build: 
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t jake-capstone-repo .
+      - docker tag jake-capstone-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest
+  post_build:
     commands:
-      - echo build Docker image complete 'date'
-      - echo push latest Docker images to ECR...
-      - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/terraformasaurus-rex-repo:latest
+      - echo Build completed on `date`
+      - echo Pushing the Docker image to ECR...
+      - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"terraformasaurus-rex-container","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/terraformasaurus-rex-repo:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"jake-capstone-container","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest"}]' > imagedefinitions.json
+
 artifacts:
-    files: 'imagedefinitions.json'
+  files:
+    - imagedefinitions.json
