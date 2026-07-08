@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t jake-capstone-repo .
+      - docker build -t jake-capstone-repo:latest src
       - docker tag jake-capstone-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest
   post_build:
     commands:
