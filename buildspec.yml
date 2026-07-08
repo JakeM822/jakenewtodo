@@ -11,7 +11,7 @@ build:
       - echo Building the Docker image...
       - docker build -t jake-capstone-repo .
       - docker tag jake-capstone-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/jake-capstone-repo:latest
-  post_build:
+post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image to ECR...
